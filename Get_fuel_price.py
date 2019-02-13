@@ -17,11 +17,9 @@ def moded_Url(prod, day):
     modded_url = url.format(product=prod, days=day)
     return modded_url
 
-data_to_show = []
-
 def showing(data):
     """Function to append to the list 'data_to_show' given an input of desired fuel day(s)"""
-
+    data_to_show = []
     for entry in data:
         data_to_show.append({
             'Store_Name':entry['trading-name'],
@@ -34,6 +32,7 @@ def showing(data):
             'Date': entry.date,
             'Day':entry.day,
             })
+    return data_to_show
 
 def sort_Price(data):
     """sorts any list by the key term 'Price_of_Fuel', meant to work as a quiet function"""
@@ -56,6 +55,7 @@ def table_Creation(data):
             <p> KEY: Blue = Tomorrow, Green = Today. </p>
         </head>
         '''
+
     t_head = '''
         <thead>
             <tr>
@@ -71,22 +71,7 @@ def table_Creation(data):
         </thead>
         '''
 
-    # t_body = ''.join('''
-    #         <tr>
-    #             <td>{Store_Name}</td>
-    #             <td>{Price_of_Fuel}</td>
-    #             <td>{Address}</td>
-    #             <td>{Location}</td>
-    #             <td>{Date}</td>
-    #         </tr>
-    #         '''.format(**entry) for entry in data)
-    # if data.day == 'Tomorrow':
-    #     colour == blue
-    # else:
-    #     colour == white
-
     t_body = ['''
-
         <tr style ='background-color: {c}'>
             <td>{Store_Name}</td>
             <td>{Price_of_Fuel}</td>
@@ -97,6 +82,8 @@ def table_Creation(data):
         '''.format(**entry, c = 'Blue' if entry['Day'] == 'Tomorrow' else 'Green') for entry in data]
 
     n_table = ''.join(t_body)
+    print(type(data))
+    print(len(data))
 
     whole_page = '''
     <!DOCTYPE html>
@@ -140,19 +127,14 @@ def get_data():
     for e in today_parsed.entries:
         e.update({'day':'Today'})
     all_parsed = today_parsed.entries + tomorrow_parsed.entries
-    showing(all_parsed)
+    data_to_show = showing(all_parsed)
     show_sorted = sorted(data_to_show, key=sort_Price, reverse=False)
     fkndone = table_Creation(show_sorted)
-
-
-    # print(fkndone)
     return fkndone
 
 if __name__ == '__main__':
     get_data()
 
-
-# print(data_to_show)
 print(':-----------:-----------: ENDED HERE :-----------:-----------:')
 H = localtime().tm_hour
 M = localtime().tm_min
