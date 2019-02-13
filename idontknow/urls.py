@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('second/', views.second_page, name = 'second_page'),
     path('scrape/', views.scrapes, name = 'scrapping'),
+    path('table/', views.table, name = 'slive'),
 ]

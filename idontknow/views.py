@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# Create your views here.
+from Get_fuel_price import get_data as GFP
 
 
 def second_page(request):
@@ -9,5 +9,5 @@ def second_page(request):
 def scrapes(request):
     return render(request, 'idontknow/Fuel_home_page.html')
 
-# def scrapes(request):
-#     return HttpResponse( 'Work_plz/TEST.html')
+def table(request):
+    return HttpResponse(GFP())
