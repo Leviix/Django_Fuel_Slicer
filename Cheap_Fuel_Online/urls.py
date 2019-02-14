@@ -20,8 +20,8 @@ from idontknow import urls as idkurls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home_page, name = 'Home_page'),
-    path('home/about', views.about_us, name = 'abous text'),
+    path('/', views.home_page, name = 'Home page'),
+    path('about/', views.about_us, name = 'abous text'),
     path('home/', include(idkurls), name = 'second_page'),
     path('home/', include(idkurls), name = 'scraping'),
 ]
