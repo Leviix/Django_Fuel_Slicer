@@ -3,6 +3,6 @@ from django.urls import path, re_path, include
 from . import views
 
 urlpatterns = [
-    path('/scrape', views.scrapes, name = 'scrapping'),
-    path('table/', views.table, name = 'slice'),
+    path('scrape', views.scrapes, name = 'scrapping'),
+    path('table', views.table, name = 'slice'),
 ]
