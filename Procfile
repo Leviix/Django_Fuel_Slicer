@@ -1,1 +1,1 @@
-Cheap_Fuel_Online.wsgi --log-file -
+web: gunicorn Cheap_Fuel_Online.wsgi --log-file -
