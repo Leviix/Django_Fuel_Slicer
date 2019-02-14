@@ -50,8 +50,8 @@ def table_Creation(data):
                 Fuel Scrapper
             </title>
             <h1>Fuel Slicer</h1>
-            <a href="http://localhost:8000/home/" class="Standard_button">Home</a>
-            <a href="http://localhost:8000/home/about" class="Standard_button">About</a>
+            <a href="/" class="Standard_button">Home</a>
+            <a href="/about" class="Standard_button">About</a>
             <p> KEY: Blue = Tomorrow, Green = Today. </p>
         </head>
         '''
