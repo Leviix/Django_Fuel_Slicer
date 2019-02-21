@@ -99,7 +99,7 @@ def table_Creation(data):
         '''.format(title, t_head, n_table)
     return whole_page
 
-def get_data():
+def get_data(ftype=6):
     """The main function being called.......aka Main."""
 
     # result_pM = prod_Men()
@@ -107,8 +107,8 @@ def get_data():
     #     test_parsed = feedparser.parse(FUELTEST)
     #     showing(test_parsed.entries)
     # today_url, tomorrow_url = [moded_Url(result_pM, T) for T in ['Today','Tomorrow']]
-    today_url = moded_Url(6, 'Today')
-    tomorrow_url = moded_Url(6, 'Tomorrow')
+    today_url = moded_Url(ftype, 'Today')
+    tomorrow_url = moded_Url(ftype, 'Tomorrow')
     try:
         today_data = requests.get(today_url)
         tomorrow_data = requests.get(tomorrow_url)
