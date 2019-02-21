@@ -10,7 +10,7 @@ def scrapes(request):
     return render(request, 'idontknow/Fuel_home_page.html')
 
 def table(request):
-    if 'product' in request.GET['product']:
+    if x in request.GET['product']:
         prod_type = request.GET['product']
     else:
         prod_type = '6'
