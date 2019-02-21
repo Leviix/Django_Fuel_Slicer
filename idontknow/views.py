@@ -13,6 +13,6 @@ def table(request):
     if 'product' in request.GET['product']:
         prod_type = request.GET['product']
     else:
-        prod_type = 6
+        prod_type = '6'
 
     return HttpResponse(get_data(prod_type))
