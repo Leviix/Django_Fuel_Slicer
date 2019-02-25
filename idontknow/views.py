@@ -11,10 +11,6 @@ def scrapes(request):
     return render(request, 'idontknow/Fuel_home_page.html')
 
 def table(request):
-
-    # if 'product' in request.GET:
-    #     prod_type = request.GET['product']
-    # else:
-    #     prod_type = '6'
     prod_type = request.GET.get('product', '6')
+    # table_Creation()
     return HttpResponse(get_data(prod_type))

@@ -25,7 +25,10 @@ SECRET_KEY = '6ea$v!mo$^zo__to(%=7yfe)o@eq9v_1gn=^!o$%&3#g!y1+b_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fuel-slasher.herokuapp.com']
+ALLOWED_HOSTS = [
+    'fuel-slasher.herokuapp.com',
+    'localhost',
+]
 
 
 # Application definition

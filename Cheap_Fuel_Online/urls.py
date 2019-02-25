@@ -19,7 +19,7 @@ from Cheap_Fuel_Online import views
 from idontknow import urls as idkurls
 
 urlpatterns = [
-    path('/admin', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', views.home_page, name = 'Home page'),
     path('about', views.about_us, name = 'about us text'),
     path('', include(idkurls), name = 'second_page'),

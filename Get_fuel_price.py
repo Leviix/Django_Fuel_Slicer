@@ -36,8 +36,10 @@ def showing(data):
 
 def sort_Price(data):
     """sorts any list by the key term 'Price_of_Fuel', meant to work as a quiet function"""
-
     return data['Price_of_Fuel']
+
+def filterloc(loc):
+    return loc['Location']
 
 def table_Creation(data):
     """creates the whole html page that is being rendered,(in this case it just being html responded)"""
@@ -52,7 +54,12 @@ def table_Creation(data):
             <h1>Fuel Slicer</h1>
             <a href="/" class="Standard_button">Home</a>
             <a href="/about" class="Standard_button">About</a>
+            <a href="" class="Standard_button">Refresh</a>
             <p> KEY: Blue = Tomorrow, Green = Today. </p>
+            <div class='search'>
+            <input type='text' name='' placeholder= 'Type location to filter'>
+            <a class='search-btn' href ='#'>Filter</a>
+            </div>
         </head>
         '''
 
@@ -82,7 +89,7 @@ def table_Creation(data):
         '''.format(**entry, c = 'Blue' if entry['Day'] == 'Tomorrow' else 'Green') for entry in data]
 
     n_table = ''.join(t_body)
-    print(type(data))
+
     print(len(data))
 
     whole_page = '''
@@ -99,7 +106,7 @@ def table_Creation(data):
         '''.format(title, t_head, n_table)
     return whole_page
 
-def get_data(ftype=6):
+def get_data(ftype=6, loc=None):
     """The main function being called.......aka Main."""
 
     # result_pM = prod_Men()
@@ -117,6 +124,11 @@ def get_data(ftype=6):
         no_internet = '\n:----:----: Unabel to connect to the internt :----:----:\
             \nPlease check your internet connection and try again.\n\n'
         print(no_internet)
+        no_internet_html = '''<h2>Please check your internet connection and try again.</h2>
+        <a href="/scrape" class="Standard_button">Back</a>
+        <a href="" class="Standard_button">Refresh</a>
+            '''
+        return no_internet_html
         sys.exit(0)
 
     today_parsed = feedparser.parse(today_data.text)
@@ -129,8 +141,18 @@ def get_data(ftype=6):
     all_parsed = today_parsed.entries + tomorrow_parsed.entries
     data_to_show = showing(all_parsed)
     show_sorted = sorted(data_to_show, key=sort_Price, reverse=False)
-    fkndone = table_Creation(show_sorted)
-    return fkndone
+
+    if not loc == None:
+        upper_loc = uppercase(loc)
+        loclist = []
+        for x in data_to_show['Location']:
+            loclist.append(data_to_show)
+            locfirst = sorted(data_to_show, key=filterloc)
+            fkndone = table_Creation(loclist)
+        return fkndone
+    else:
+        fkndone = table_Creation(show_sorted)
+        return fkndone
 
 if __name__ == '__main__':
     get_data()
@@ -139,4 +161,4 @@ print(':-----------:-----------: ENDED HERE :-----------:-----------:')
 H = localtime().tm_hour
 M = localtime().tm_min
 S = localtime().tm_sec
-print('Time: {}:{}:{}'.format(H, M, S))
+print(f'Time: {H}:{M}:{S}')
