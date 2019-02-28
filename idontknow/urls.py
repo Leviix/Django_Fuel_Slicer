@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('scrape', views.scrapes, name = 'scrapping'),
     path('table', views.table, name = 'slice'),
+    path('table/night-mode', views.table, name = 'nighmode table'),
 ]

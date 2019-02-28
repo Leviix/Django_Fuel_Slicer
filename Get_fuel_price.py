@@ -19,6 +19,7 @@ def moded_Url(prod, day):
 
 def showing(data):
     """Function to append to the list 'data_to_show' given an input of desired fuel day(s)"""
+
     data_to_show = []
     for entry in data:
         data_to_show.append({
@@ -41,13 +42,13 @@ def sort_Price(data):
 def filterloc(loc):
     return loc['Location']
 
-def table_Creation(data):
+def table_Creation(data, night=None):
     """creates the whole html page that is being rendered,(in this case it just being html responded)"""
     # if __name__ == '__main__':
     #     f = open('table.html', 'w')
     # else:
     title = '''
-        <head>
+
             <title>
                 Fuel Scrapper
             </title>
@@ -55,10 +56,11 @@ def table_Creation(data):
             <a href="/" class="Standard_button">Home</a>
             <a href="/about" class="Standard_button">About</a>
             <a href="" class="Standard_button">Refresh</a>
+            <a href="/night-mode" class="Standard_button" id="Night-btn">Night Mode</a>
             <p> KEY: Blue = Tomorrow, Green = Today. </p>
             <div class='search'>
             <input type='text' name='' placeholder= 'Type location to filter'>
-            <a class='search-btn' href ='#'>Filter</a>
+            <a class='Standard_button' href ='#'>Filter</a>
             </div>
         </head>
         '''
@@ -79,7 +81,7 @@ def table_Creation(data):
         '''
 
     t_body = ['''
-        <tr style ='background-color: {c}'>
+        <tr style ='background: {c}'>
             <td>{Store_Name}</td>
             <td>{Price_of_Fuel}</td>
             <td>{Address}</td>
@@ -95,7 +97,10 @@ def table_Creation(data):
     whole_page = '''
     <!DOCTYPE html>
     <html>
-        {}
+        <head>
+            <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
+            {}
+        </head>
         <table>
             <tbody>
                 {}
@@ -103,10 +108,10 @@ def table_Creation(data):
             </tbody>
         </table>
     </html>
-        '''.format(title, t_head, n_table)
+        '''.format(title, t_head, n_table, night_var=night)
     return whole_page
 
-def get_data(ftype=6, loc=None):
+def get_data(ftype=6, loc=None, night=None):
     """The main function being called.......aka Main."""
 
     # result_pM = prod_Men()
@@ -148,11 +153,12 @@ def get_data(ftype=6, loc=None):
         for x in data_to_show['Location']:
             loclist.append(data_to_show)
             locfirst = sorted(data_to_show, key=filterloc)
-            fkndone = table_Creation(loclist)
+            fkndone = table_Creation(loclist, night=None)
         return fkndone
     else:
-        fkndone = table_Creation(show_sorted)
+        fkndone = table_Creation(show_sorted, night=None)
         return fkndone
+
 
 if __name__ == '__main__':
     get_data()

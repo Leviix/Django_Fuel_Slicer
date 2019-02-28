@@ -12,5 +12,4 @@ def scrapes(request):
 
 def table(request):
     prod_type = request.GET.get('product', '6')
-    # table_Creation()
-    return HttpResponse(get_data(prod_type))
+    return HttpResponse(get_data(ftype=prod_type))

@@ -1,0 +1,21 @@
+html{
+  background: #5F6362;
+  background: -moz-linear-gradient(top, #5F6362 30%, #228EB9 100%);
+  background: -webkit-linear-gradient(top, #5F6362 0%, #228EB9 150%);
+  background: linear-gradient(top, #5F6362 0%, #228EB9 100%);
+}
+a{
+  padding:5px 20px 5px 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  align: center;
+
+}
+
+h1{
+  color: #228EB9;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 50px;
+  white-space: normal;
+}
