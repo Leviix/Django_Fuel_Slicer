@@ -5,17 +5,33 @@ html{
   background: linear-gradient(top, #5F6362 0%, #228EB9 100%);
 }
 
+a:hover{
+  color: red;
+  background-color: #000;
+}
+
 a{
-  padding:5px 20px 5px 20px;
-  border: 1px solid;
+  color: #000;
+  background-color: #aaa;
+  margin: auto;
+  padding:5px 20px;
+  border: 1px red solid;
   border-radius: 10px;
-  
 }
 
 h1{
-  color: #206E7C;
+  color: #000;
+  background-color: #aaa;
   text-align: center;
   border: 1px solid red;
+  padding: 10px;
   border-radius: 50px;
-  margin: auto;
+  margin: 22px auto;
+}
+thead{
+  background-color: #aaa;
+}
+
+td{
+  border: 1px solid red;
 }

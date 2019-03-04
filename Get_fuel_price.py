@@ -59,7 +59,7 @@ def table_Creation(data, night=None):
             <a href="/night-mode" class="Standard_button" id="Night-btn">Night Mode</a>
             <p> KEY: Blue = Tomorrow, Green = Today. </p>
             <div class='search'>
-            <input type='text' name='' placeholder= 'Type location to filter'>
+            <input type='text' name='filter' placeholder= 'Type location to filter'>
             <a class='Standard_button' href ='#'>Filter</a>
             </div>
         </head>
@@ -101,12 +101,14 @@ def table_Creation(data, night=None):
             <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
             {}
         </head>
+        <body>
         <table>
             <tbody>
                 {}
                 {}
             </tbody>
         </table>
+        </body>
     </html>
         '''.format(title, t_head, n_table, night_var=night)
     return whole_page
