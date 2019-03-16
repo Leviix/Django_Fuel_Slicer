@@ -2,31 +2,87 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <head>
+      <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
+      <title>
+        Fuel Scrapper
+      </title>
+      <h1>Fuel Slicer</h1>
+        <a href="/" class="Standard_button">Home</a>
+        <a href="/about" class="Standard_button">About</a>
+        <a href="" class="Standard_button">Refresh</a>
+        <a href="/night-mode" class="Standard_button" id="Night-btn">Night Mode</a>
+        <p> KEY: Blue = Tomorrow, Green = Today. </p>
+          <div class='search'>
+            <input type='text' name='filter' placeholder= 'Type location to filter'>
+            <a class='Standard_button' href ='#'>Filter</a>
+          </div>
   </head>
   <body>
-
     <script type="text/javascript">
-
     </script>
-
     <form class="" action="/table" method="GET">
       <select class="product" name="product">
         {{list|safe}}
-        {% for choice, item in list.items %}
+        {% for choice, item in Fuel_types.items %}
           {% if query == choice %}
             <option value="{{choice}}" selected>{{item|safe}}</option>
 
           {% elif query != choice %}
             <option value="{{choice}}">{{item|safe}}</option>
 
-          {%endif%}
+          {% endif %}
         {% endfor %}
       </select>
       <button type="submit">Search</button>
     </form>
+    <table>
+      <thead>
+        <tr>
+          <th colspan = '6'>Fuel Scrapped</th>
+        </tr>
+        <tr>
+          <td><b> Store Name  </b></td>
+          <td><b> Price       </b></td>
+          <td><b> Address     </b></td>
+          <td><b> Location    </b></td>
+          <td><b> Date        </b></td>
+          <td><b> Day         </b></td>
+        </tr>
+      </thead>
+      <tbody>
+      {% for entry in something_regarding_fuel %}
+        {% if entry.Day == 'Tomorrow' %}
+        <tr style="background-color: #228EB9 10%">
+        {% elif entry.Day != 'Tomorrow' %}
+         <tr style="background: #aaa">
+           {% endif %}
+          <td>
+            {{entry.Store_Name|safe}}
+          </td>
+          <td>
+            {{entry.Price_of_Fuel|safe}}
+          </td>
+          <td>
+            {{entry.Address|safe}}
+          </td>
+          <td>
+            {{entry.Location|safe}}
+          </td>
+          <td>
+            {{entry.Date|safe}}
+          </td>
+          <td>
+            {{entry.Day|safe}}
+          </td>
 
-    {{something_regarding_fuel|safe}}
+        </tr>
+      {% endfor %}
+      </tbody>
+
+
+
+
 
   </body>
 </html>

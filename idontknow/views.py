@@ -9,6 +9,6 @@ def scrapes(request):
 def table(request):
     prod_type = int(request.GET.get('product', 6))
     random_list = {1:'91 Unleaded', 2:'95 Unleaded', 6:'98 Premium Unleaded', 4:'Disiel', 5:'LPG'}
-    EI = random_list.items()
+
     return render(request, 'Cheap_Fuel_Online/template_script.html', {'query': prod_type,
-        'list':random_list, 'something_regarding_fuel':get_data(ftype = prod_type)})
+        'Fuel_types':random_list, 'something_regarding_fuel':get_data(ftype = prod_type)})

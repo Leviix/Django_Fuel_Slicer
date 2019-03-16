@@ -42,77 +42,6 @@ def sort_Price(data):
 def filterloc(loc):
     return loc['Location']
 
-def table_Creation(data, night=None):
-    """creates the whole html page that is being rendered,(in this case it just being html responded)"""
-    # if __name__ == '__main__':
-    #     f = open('table.html', 'w')
-    # else:
-    title = '''
-
-            <title>
-                Fuel Scrapper
-            </title>
-            <h1>Fuel Slicer</h1>
-            <a href="/" class="Standard_button">Home</a>
-            <a href="/about" class="Standard_button">About</a>
-            <a href="" class="Standard_button">Refresh</a>
-            <a href="/night-mode" class="Standard_button" id="Night-btn">Night Mode</a>
-            <p> KEY: Blue = Tomorrow, Green = Today. </p>
-            <div class='search'>
-            <input type='text' name='filter' placeholder= 'Type location to filter'>
-            <a class='Standard_button' href ='#'>Filter</a>
-            </div>
-        </head>
-        '''
-
-    t_head = '''
-        <thead>
-            <tr>
-                <th colspan = '6'>Fuel Scrapped</th>
-            </tr>
-            <tr>
-                <td><b> Store Name  </b></td>
-                <td><b> Price       </b></td>
-                <td><b> Address     </b></td>
-                <td><b> Location    </b></td>
-                <td><b> Date        </b></td>
-            </tr>
-        </thead>
-        '''
-
-    t_body = ['''
-        <tr style ='background: {c}'>
-            <td>{Store_Name}</td>
-            <td>{Price_of_Fuel}</td>
-            <td>{Address}</td>
-            <td>{Location}</td>
-            <td>{Date}</td>
-        </tr>
-        '''.format(**entry, c = 'Blue' if entry['Day'] == 'Tomorrow' else 'Green') for entry in data]
-
-    n_table = ''.join(t_body)
-
-    print(len(data))
-
-    whole_page = '''
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
-            {}
-        </head>
-        <body>
-        <table>
-            <tbody>
-                {}
-                {}
-            </tbody>
-        </table>
-        </body>
-    </html>
-        '''.format(title, t_head, n_table, night_var=night)
-    return whole_page
-
 def get_data(ftype=6, loc=None, night=None):
     """The main function being called.......aka Main."""
 
@@ -148,18 +77,19 @@ def get_data(ftype=6, loc=None, night=None):
     all_parsed = today_parsed.entries + tomorrow_parsed.entries
     data_to_show = showing(all_parsed)
     show_sorted = sorted(data_to_show, key=sort_Price, reverse=False)
-
+    print(type(show_sorted))
     if not loc == None:
         upper_loc = uppercase(loc)
         loclist = []
         for x in data_to_show['Location']:
             loclist.append(data_to_show)
             locfirst = sorted(data_to_show, key=filterloc)
-            fkndone = table_Creation(loclist, night=None)
-        return fkndone
+            final = sorted(locfirst, key=sort_price, reverse=False)
+            # fkndone = table_Creation(loclist, night=None)
+        return final
     else:
-        fkndone = table_Creation(show_sorted, night=None)
-        return fkndone
+        # fkndone = table_Creation(show_sorted, night=None)
+        return show_sorted
 
 
 if __name__ == '__main__':
