@@ -85,15 +85,15 @@ def get_data(ftype=6, loc=None, night=None):
             loclist.append(data_to_show)
             locfirst = sorted(data_to_show, key=filterloc)
             final = sorted(locfirst, key=sort_price, reverse=False)
-            # fkndone = table_Creation(loclist, night=None)
         return final
     else:
-        # fkndone = table_Creation(show_sorted, night=None)
         return show_sorted
-
 
 if __name__ == '__main__':
     get_data()
+
+
+
 
 print(':-----------:-----------: ENDED HERE :-----------:-----------:')
 H = localtime().tm_hour

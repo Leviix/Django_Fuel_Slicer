@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Get_fuel_price import get_data, moded_Url, showing, table_Creation
+from Get_fuel_price import get_data, moded_Url, showing
 
 
 
