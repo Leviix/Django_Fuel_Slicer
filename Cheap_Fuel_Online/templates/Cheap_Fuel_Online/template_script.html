@@ -27,10 +27,8 @@
         {% for choice, item in Fuel_types.items %}
           {% if query == choice %}
             <option value="{{choice}}" selected>{{item|safe}}</option>
-
           {% elif query != choice %}
             <option value="{{choice}}">{{item|safe}}</option>
-
           {% endif %}
         {% endfor %}
       </select>
@@ -47,7 +45,6 @@
           <td><b> Address     </b></td>
           <td><b> Location    </b></td>
           <td><b> Date        </b></td>
-          <td><b> Day         </b></td>
         </tr>
       </thead>
       <tbody>
@@ -72,10 +69,6 @@
           <td>
             {{entry.Date|safe}}
           </td>
-          <td>
-            {{entry.Day|safe}}
-          </td>
-
         </tr>
       {% endfor %}
       </tbody>
