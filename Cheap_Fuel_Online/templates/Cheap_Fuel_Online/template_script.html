@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="htmlT">
   <head>
+    <title>
+      Fuel Scrapper
+    </title>
     <meta charset="utf-8">
-    <head>
-      <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
-      <title>
-        Fuel Scrapper
-      </title>
-      <h1>Fuel Slicer</h1>
-        <a href="/" class="Standard_button">Home</a>
-        <a href="/about" class="Standard_button">About</a>
-        <a href="" class="Standard_button">Refresh</a>
-        <a href="/night-mode" class="Standard_button" id="Night-btn">Night Mode</a>
-        <p> KEY: Blue = Tomorrow, Green = Today. </p>
-          <div class='search'>
-            <input type='text' name='filter' placeholder= 'Type location to filter'>
-            <a class='Standard_button' href ='#'>Filter</a>
-          </div>
+    <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
+    <script type="text/javascript">
+      var test = document.getElementById('Night_btn');
+      var htmlT = document.getElementsByTagName('html');
+
+      function changebg(e){
+        e.preventDefault();
+        htmlT[0].style.background = 'purple'
+      }
+      console.log('after');
+      test.onclick = changebg;
+    </script>
   </head>
   <body>
-    <script type="text/javascript">
-    </script>
-    <form class="" action="/table" method="GET">
-      <select class="product" name="product">
-        {{list|safe}}
+    <h1>Fuel Slicer</h1>
+      <a href="/" class="Standard_button">Home</a>
+      <a href="/about" class="Standard_button">About</a>
+      <a href="" class="Standard_button">Refresh</a>
+      <a href="#" class="Standard_button" id="Night_btn">Night Mode</a>
+      <p> KEY: Blue = Tomorrow, Green = Today. </p>
+        <div class='search'>
+          <input type='text' name='filter' placeholder= 'Type location to filter'>
+          <a class='Standard_button' id="filter" href =''>Filter</a>
+        </div>
+    <form id="product_form" action="/table" method="GET">
+      <select id="user_chosen" name="product">
         {% for choice, item in Fuel_types.items %}
-          {% if query == choice %}
-            <option value="{{choice}}" selected>{{item|safe}}</option>
-          {% elif query != choice %}
-            <option value="{{choice}}">{{item|safe}}</option>
-          {% endif %}
+            <option value="{{choice}}" {% if choice == query %} selected{% else %}{% endif %}>{{item}}</option>
         {% endfor %}
       </select>
-      <button type="submit">Search</button>
+      <button id="fuel_type"type="submit">Search</button>
     </form>
     <table>
       <thead>
@@ -55,23 +58,37 @@
          <tr style="background: #aaa">
            {% endif %}
           <td>
-            {{entry.Store_Name|safe}}
+            {{entry.Store_Name}}
           </td>
           <td>
-            {{entry.Price_of_Fuel|safe}}
+            {{entry.Price_of_Fuel}}
           </td>
           <td>
-            {{entry.Address|safe}}
+            {{entry.Address}}
           </td>
           <td>
-            {{entry.Location|safe}}
+            {{entry.Location}}
           </td>
           <td>
-            {{entry.Date|safe}}
+            {{entry.Date}}
           </td>
         </tr>
       {% endfor %}
       </tbody>
+
+    <script type="text/javascript">
+
+    var formsub = document.getElementById('product_form');
+    var selection_list = document.getElementById('user_chosen');
+    function submit(){
+    formsub.submit();
+    }
+    selection_list.onchange = submit;
+
+    </script>
+
+
+
 
 
 
