@@ -6,17 +6,6 @@
     </title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="static/idontknow/NIGHTMODE_tabel_page.css" type="text/css">
-    <script type="text/javascript">
-      var test = document.getElementById('Night_btn');
-      var htmlT = document.getElementsByTagName('html');
-
-      function changebg(e){
-        e.preventDefault();
-        htmlT[0].style.background = 'purple'
-      }
-      console.log('after');
-      test.onclick = changebg;
-    </script>
   </head>
   <body>
     <h1>Fuel Slicer</h1>
@@ -26,8 +15,8 @@
       <a href="#" class="Standard_button" id="Night_btn">Night Mode</a>
       <p> KEY: Blue = Tomorrow, Green = Today. </p>
         <div class='search'>
-          <input type='text' name='filter' placeholder= 'Type location to filter'>
-          <a class='Standard_button' id="filter" href =''>Filter</a>
+          <input type='text' id="filter_text" placeholder= 'Type location to filter'>
+          <a class='Standard_button' id="filter" href ='#'>Filter</a>
         </div>
     <form id="product_form" action="/table" method="GET">
       <select id="user_chosen" name="product">
@@ -37,7 +26,7 @@
       </select>
       <button id="fuel_type"type="submit">Search</button>
     </form>
-    <table>
+    <table id="whole_table">
       <thead>
         <tr>
           <th colspan = '6'>Fuel Scrapped</th>
@@ -53,7 +42,7 @@
       <tbody>
       {% for entry in something_regarding_fuel %}
         {% if entry.Day == 'Tomorrow' %}
-        <tr style="background-color: #228EB9 10%">
+        <tr style="background-color: #228EB9 40%">
         {% elif entry.Day != 'Tomorrow' %}
          <tr style="background: #aaa">
            {% endif %}
@@ -66,7 +55,7 @@
           <td>
             {{entry.Address}}
           </td>
-          <td>
+          <td class="Loc">
             {{entry.Location}}
           </td>
           <td>
@@ -86,7 +75,18 @@
     selection_list.onchange = submit;
 
     </script>
+    <script type="text/javascript">
+      var filterbtn = document.getElementById('filter');
+      var filter_input = document.getElementById('filter_text');
+      var table_B = document.getElementsByTagName('tbody');
+      var not_location = document.getElementsByClassName('Loc');
 
+      function filter(){
+        console.log('filtering');
+        console.log(table_B);
+      }
+      filter_input.oninput = filter;
+    </script>
 
 
 
