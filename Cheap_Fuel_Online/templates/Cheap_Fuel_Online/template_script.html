@@ -21,7 +21,7 @@
     <form id="product_form" action="/table" method="GET">
       <select id="user_chosen" name="product">
         {% for choice, item in Fuel_types.items %}
-            <option value="{{choice}}" {% if choice == query %} selected{% else %}{% endif %}>{{item}}</option>
+            <option value="{{choice}}" {% if choice == query %}selected{% else %}{% endif %}>{{item}}</option>
         {% endfor %}
       </select>
       <button id="fuel_type"type="submit">Search</button>
@@ -77,16 +77,28 @@
     </script>
     <script type="text/javascript">
       var filterbtn = document.getElementById('filter');
-      var filter_input = document.getElementById('filter_text');
       var table_B = document.getElementsByTagName('tbody');
       var not_location = document.getElementsByClassName('Loc');
+      var typed_text = document.getElementById('filter_text')
 
-      function filter(){
+      function filter(E){
+        console.log(E.target.value);
+        console.log(not_location.innerText);
         console.log('filtering');
-        console.log(table_B[0].getElementsByClassName('Loc'));
-        console.log(not_location);
+        for (var i=0; i < not_location.length; i++) {
+          if (E.target.value == not_location[i].innerText) {
+            console.log(E.target.value);
+
+          }
+          // console.log(not_location[i].innerText);
+
+
+        }
+
       }
-      filter_input.oninput = filter;
+
+      typed_text.oninput = filter;
+
     </script>
 
 
